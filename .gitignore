@@ -35,6 +35,8 @@ Thumbs.db
 /.qmake.cache
 /.qmake.stash
 resources/icon.ico
+resources/icon.icns
+resources/icon.iconset
 version.h
 
 # qtcreator generated files

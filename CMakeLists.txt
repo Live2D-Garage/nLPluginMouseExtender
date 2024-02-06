@@ -17,12 +17,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(WIN32 AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/resources/icon.rc)
     set(ICON_RESOURCE resources/icon.rc)
 endif()
+if(APPLE AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/resources/icon.icns)
+    set(MACOSX_BUNDLE_ICON_FILE icon.icns)
+    set(MACOSX_ICON_PATH ${CMAKE_CURRENT_SOURCE_DIR}/resources/icon.icns)
+    set_source_files_properties(${MACOSX_ICON_PATH} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+endif()
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core WebSockets)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(${PROJECT_NAME}
+    MACOSX_BUNDLE ${MACOSX_ICON_PATH}
     main.cpp
     version.h
     ${ICON_RESOURCE}
